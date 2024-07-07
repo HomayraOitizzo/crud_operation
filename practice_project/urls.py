@@ -24,5 +24,9 @@ urlpatterns = [
     path('index/', views.index, name= 'index'  ),
     path('res_form/', views.res_form, name="res_form"),
     path('menu_form', views.menu_form, name="menu_form"),
-    path('menu_list/<int:food_id>/', views.menu_list, name="menu_list")
+    path('menu_list/<int:food_id>/', views.menu_list, name="menu_list"),
+    path('edit_res/<int:food_id>/', views.edit_res, name='edit_res'),
+    path('edit_menu/<int:food_id>/', views.edit_menu, name="edit_menu"),
+    path('delete_menu/<int:food_id>/', views.delete_menu, name="delete_menu")
+
 ]

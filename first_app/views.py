@@ -39,3 +39,40 @@ def menu_form(request):
     diction={'title':"Add Menu", "menu_form":form}
     return render(request, 'menu_form.html', context=diction)
    
+def edit_res(request, food_id):
+    res_info = Restaurants.objects.get(pk=food_id)
+    form = forms.RestaurantForm(instance=res_info)
+
+    if request.method=="POST":
+        form = forms.RestaurantForm(request.POST, instance=res_info)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return menu_list(request, food_id)
+            
+
+    
+    diction={'edit_form':form}
+    return render(request, 'edit_res.html', context=diction)
+
+def edit_menu(request, food_id):
+    menu_info = Menu.objects.get(pk=food_id)
+    form = forms.Menuform(instance=menu_info)
+
+    if request.method == "POST":
+        form = forms.Menuform(request.POST, instance=menu_info)
+        
+        if form.is_valid():
+            form.save(commit=True)
+            # Redirect to a view that shows the updated menu or restaurant
+            return menu_list(request, menu_info.food.id)  # Assuming `menu_info.food` refers to the related restaurant ID
+
+    diction = {'edit_form': form}
+    diction.update({'food_id':food_id})
+    return render(request, 'edit_menu.html', context=diction)
+
+def delete_menu(request, food_id):
+    menu = Menu.objects.get(pk=food_id).delete()
+    diction={'delete_success':'Deleted Successfully'}
+    return render(request, 'delete.html', context=diction)
+
