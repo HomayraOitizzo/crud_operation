@@ -1,0 +1,15 @@
+{% extends "base.html"%}
+
+{% block body_block%}
+<h1>List of Dhaka Restaurants </h1>
+<ul>
+    {% if res_list %}
+    {% for Restaurants in  res_list %}
+    <li><a href="{% url 'menu_list' food_id=Restaurants.id %}">{{Restaurants.res_name}} {{Restaurants.location}}</a>
+    </li>
+    {% endfor %}
+    {% else %}
+    <h4>No musician in the list</h4>
+    {% endif %}
+</ul>
+{% endblock %}

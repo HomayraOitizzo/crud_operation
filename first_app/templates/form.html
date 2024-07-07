@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Form</title>
+    {% comment %} <link rel="stylesheet" href="{% static 'style.css'%}"> {% endcomment %}
+  </head>
+  <body>
+    <h1>New Restaurant submission</h1>
+    <form action="" method="POSt">
+      {{ new_form }}
+      {% csrf_token %}
+      <input type="submit" name="submit" value="submit">
+    </form>
+    <hr>
+{% comment %} 
+    {% if form_submitted %}
+      <p> Name:{{ user_name }}</p>
+      <p> Location:{{location}}</p>
+      <p>Email: {{user_email}}</p>
+          
+    {% endif %} {% endcomment %}
+
+ 
+</html>

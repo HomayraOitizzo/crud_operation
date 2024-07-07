@@ -1,0 +1,10 @@
+ {% extends "base.html" %}
+ {% block body_block%}
+<h1>Restaurant Form</h1>
+<form method="POST">
+    {{res_form}}
+    {% csrf_token%}
+    <input type="submit" name="submit" value="add">
+
+</form>
+ {% endblock %}
